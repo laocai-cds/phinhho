@@ -1263,10 +1263,9 @@ function matchUnits(headers,rows){
   let H=headers.map(h=>String(h).trim()),R=rows;
   if(R.length&&R.some(c=>/\(1\)/.test(String(c)))){const sub=R[0];while(H.length<sub.length)H.push('');H=H.map((h,i)=>{const t=String(sub[i]==null?'':sub[i]).trim();return t||h});R=R.slice(1)}
   const ni=H.findIndex(h=>h===KEYS.name);if(ni<0)return null;
-  const map=new Map();R.forEach(row=>{const o={};H.forEach((h,i)=>o[String(h).trim()]=row[i]==null?'':String(row[i]));const k=nkey(o[KEYS.name]);if(k){if(!map.has(k))map.set(k,[]);map.get(k).push(o)}});
-  if(!INITIAL_UNITS.length){const all=[];map.forEach(L=>L.forEach(o=>{if(/^\d+$/.test(String(o[KEYS.stt]).trim()))all.push(o)}));all.sort((a,b)=>Number(a[KEYS.stt])-Number(b[KEYS.stt]));return all.length?{next:all,hit:all.length}:null}
-  let hit=0;const next=INITIAL_UNITS.map(u=>{const L=map.get(nkey(u[KEYS.name]));const o=L&&(L.find(x=>String(x[KEYS.stt]).trim()===String(u[KEYS.stt]).trim())||L[0]);if(o){hit++;return o}return u});
-  return hit<Math.ceil(INITIAL_UNITS.length*.8)?null:{next,hit}}
+  const all=[];R.forEach(row=>{const o={};H.forEach((h,i)=>o[String(h).trim()]=row[i]==null?'':String(row[i]));const name=String(o[KEYS.name]||'').trim(),stt=String(o[KEYS.stt]||'').trim();if(name&&/^\d+$/.test(stt))all.push(o)});
+  all.sort((a,b)=>Number(a[KEYS.stt])-Number(b[KEYS.stt]));
+  return all.length?{next:all,hit:all.length}:null}
 function applySheet(d){
   if(!d||!d.ok||!Array.isArray(d.headers)||!Array.isArray(d.rows))return 0;
   const M=matchUnits(d.headers,d.rows);if(!M)return 0;const next=M.next,hit=M.hit;
@@ -1863,7 +1862,7 @@ $('#syncBtn').onclick=async()=>{
     if(before!==null){ // script có hỗ trợ đọc: xác nhận thật bằng thời điểm đồng bộ mới
       syncMsg('Đã gửi, đang chờ Google Sheet xác nhận…');
       for(let i=0;i<6;i++){await new Promise(r=>setTimeout(r,2500));try{const d=await jsonp(url+'?action=read',8000);if(d&&d.ok&&(d.lastSync||'')!==before){const hit=applySheet(d);if(hit)dataSrc='sheet';render();if(hit)syncMonthly();setTimeout(loadLog,800);if(hit)setTimeout(()=>syncTable(true).then(()=>loadLog()),400);
-        syncMsg(`Đã đồng bộ ${pendingRows.length} dòng lên Google Sheet${hit?` và cập nhật bảng điều khiển (${hit}/${INITIAL_UNITS.length} đơn vị khớp)`:' (chưa khớp đủ danh sách đơn vị với bảng điều khiển)'}.`,hit?'ok':'bad');toast('Đồng bộ thành công.');showSheetLink();return}}catch(_){}}
+        syncMsg(`Đã đồng bộ ${pendingRows.length} dòng lên Google Sheet${hit?` và cập nhật bảng điều khiển (${hit} đơn vị khớp theo bảng tính)`:' (chưa khớp đủ danh sách đơn vị với bảng điều khiển)'}.`,hit?'ok':'bad');toast('Đồng bộ thành công.');showSheetLink();return}}catch(_){}}
       syncMsg('Đã gửi nhưng chưa thấy Google Sheet cập nhật. Kiểm tra mã đồng bộ (nếu có) và quyền Web App, rồi thử lại.','bad');return}
     syncMsg(`Đã gửi ${pendingRows.length} dòng. Trình duyệt không đọc được kết quả, hãy mở Google Sheet và kiểm tra tab “Dữ liệu nhập” trước khi gửi lại. Nếu không thấy dữ liệu mới, kiểm tra URL Web App và quyền truy cập “Bất kỳ ai”.`,'ok');
     toast('Đã gửi. Hãy kiểm tra Google Sheet.');showSheetLink();
