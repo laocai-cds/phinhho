@@ -1,6 +1,6 @@
-# Đảng ủy xã Phình Hồ
+# Đảng bộ xã Phình Hồ
 
-Hệ thống theo dõi thu nộp đảng phí · Đảng ủy xã Phình Hồ
+Hệ thống theo dõi thu nộp đảng phí · Đảng bộ xã Phình Hồ
 
 Giao diện và ảnh chia sẻ sử dụng tông xanh da trời trong suốt theo ảnh tham khảo. Ảnh xem trước Open Graph: `og-image-ph.png` (sau khi tải lên hosting, đặt `og:image` và `twitter:image` thành URL công khai đầy đủ của ảnh).
 
