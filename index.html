@@ -10,8 +10,15 @@
 <meta property="og:locale" content="vi_VN">
 <meta property="og:site_name" content="Đảng ủy xã Phình Hồ">
 <meta property="og:title" content="Hệ thống theo dõi thu nộp đảng phí · Đảng ủy xã Phình Hồ">
+<meta property="og:url" content="https://laocai-cds.github.io/phinhho/">
 <meta property="og:description" content="Theo dõi tiến độ thu nộp đảng phí của các chi bộ, đảng bộ trực thuộc Đảng ủy xã Phình Hồ.">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://laocai-cds.github.io/phinhho/og-image-ph.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Đảng ủy xã Phình Hồ · Bảng điều hành thu nộp đảng phí">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://laocai-cds.github.io/phinhho/og-image-ph.png">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1911,7 +1918,7 @@ document.querySelectorAll('[data-page="import"]').forEach(b=>b.addEventListener(
 if(location.hash==='#import')loadLog();
 
 /* ===== Đang online & Tổng truy cập (Firebase Realtime Database) ===== */
-const FB_CFG={databaseURL:'https://tramtau-default-rtdb.firebaseio.com'};
+const FB_CFG={databaseURL:'https://phinhho-5c8a1-default-rtdb.firebaseio.com'};
 (function liveStats(){
   const set=(k,n)=>document.querySelectorAll('[data-live="'+k+'"]').forEach(e=>{e.textContent=nf.format(n)});
   const show=()=>{const a=document.getElementById('liveBar'),b=document.getElementById('livePill');if(a)a.hidden=false;if(b)b.hidden=false};
@@ -1919,7 +1926,7 @@ const FB_CFG={databaseURL:'https://tramtau-default-rtdb.firebaseio.com'};
   const base='https://www.gstatic.com/firebasejs/10.12.2/';
   const go=()=>load(base+'firebase-app-compat.js').then(()=>load(base+'firebase-database-compat.js')).then(()=>{
     firebase.initializeApp(FB_CFG);const db=firebase.database();
-    let sid='';try{sid=sessionStorage.getItem('tt_sid')||'';if(!sid){sid=Math.random().toString(36).slice(2,10)+Date.now().toString(36);sessionStorage.setItem('tt_sid',sid)}}catch(_){sid=Math.random().toString(36).slice(2,10)}
+    let sid='';try{sid=sessionStorage.getItem('ph_sid')||'';if(!sid){sid=Math.random().toString(36).slice(2,10)+Date.now().toString(36);sessionStorage.setItem('ph_sid',sid)}}catch(_){sid=Math.random().toString(36).slice(2,10)}
     const me=db.ref('presence/'+sid),vr=db.ref('stats/visits'),pr=db.ref('presence');
     // Chỉ hiện số đã được máy chủ xác nhận (không dùng giá trị tạm trên máy khách)
     let pOn=false,vOn=false;
@@ -1929,8 +1936,8 @@ const FB_CFG={databaseURL:'https://tramtau-default-rtdb.firebaseio.com'};
     db.ref('.info/connected').on('value',s=>{if(s.val()===true){
       me.onDisconnect().remove().then(()=>me.set(true)).then(startPresence).catch(()=>{});
     }});
-    let counted=false;try{counted=sessionStorage.getItem('tt_counted')==='1'}catch(_){}
-    if(!counted){vr.transaction(n=>(n||0)+1,(err,committed)=>{if(!err&&committed){try{sessionStorage.setItem('tt_counted','1')}catch(_){}startVisits()}})}
+    let counted=false;try{counted=sessionStorage.getItem('ph_counted')==='1'}catch(_){}
+    if(!counted){vr.transaction(n=>(n||0)+1,(err,committed)=>{if(!err&&committed){try{sessionStorage.setItem('ph_counted','1')}catch(_){}startVisits()}})}
     else{vr.get().then(()=>startVisits()).catch(()=>{})}
   }).catch(()=>{});
   if(!FB_CFG)return;
@@ -1939,3 +1946,7 @@ const FB_CFG={databaseURL:'https://tramtau-default-rtdb.firebaseio.com'};
 </script>
 </body>
 </html>
+
+
+
+
