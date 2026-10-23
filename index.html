@@ -1253,7 +1253,9 @@ const curKey=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMont
 const viewingPast=()=>!!(viewKey&&viewKey!==curKey()&&msnap[viewKey]);
 /* bỏ đơn vị toàn số 0 (không có đảng viên, hồ sơ, tiền) khỏi mọi bảng, biểu đồ, báo cáo */
 const hasData=r=>['members','exempt','moved','pending','approved','paidCount','unfiled','declared','paid'].some(k=>v(r,k)>0);
-function applyView(){const src=(viewingPast()?msnap[viewKey].rows:liveUnits).filter(r=>hasData(r)&&v(r,'members')>0&&nkey(nm(r))!=='dangbocaccoquandang');
+/* Hai dòng trùng tên đơn vị (ví dụ dòng lẻ “Chi bộ thôn Làng Nhì” 1 đảng viên): chỉ giữ dòng có nhiều đảng viên hơn, bỏ dòng còn lại khỏi bảng, biểu đồ, báo cáo */
+function dropDupNames(rows){const best=new Map();rows.forEach(r=>{const k=nkey(nm(r)),b=best.get(k);if(!b||v(r,'members')>v(b,'members'))best.set(k,r)});return rows.filter(r=>best.get(nkey(nm(r)))===r)}
+function applyView(){const src=dropDupNames((viewingPast()?msnap[viewKey].rows:liveUnits).filter(r=>hasData(r)&&v(r,'members')>0&&nkey(nm(r))!=='dangbocaccoquandang'));
   units=[...src].sort((a,b)=>v(b,'progress')-v(a,'progress')||v(b,'paid')-v(a,'paid'));rankOf=new Map();units.forEach((r,i)=>rankOf.set(r,i+1))}
 function renderBanner(){let b=$('#viewBanner');if(!b){b=document.createElement('div');b.id='viewBanner';const o=$('#overview');o.insertBefore(b,o.firstChild)}
   if(!viewingPast()){b.style.display='none';return}
@@ -1652,7 +1654,7 @@ $('#savePayment').onclick=()=>{
 /* export + refresh */
 
 /* ===== Tạo báo cáo ===== */
-function reportUnits(k){const src=((k&&k!==curKey()&&msnap[k])?msnap[k].rows:liveUnits).filter(r=>hasData(r)&&nkey(nm(r))!=='dangbocaccoquandang');return [...src].sort((a,b)=>v(b,'progress')-v(a,'progress')||v(b,'paid')-v(a,'paid'))}
+function reportUnits(k){const src=dropDupNames(((k&&k!==curKey()&&msnap[k])?msnap[k].rows:liveUnits).filter(r=>hasData(r)&&nkey(nm(r))!=='dangbocaccoquandang'));return [...src].sort((a,b)=>v(b,'progress')-v(a,'progress')||v(b,'paid')-v(a,'paid'))}
 function reportHTML(k){
   const U=reportUnits(k),y=+k.slice(0,4),m=+k.slice(5);
   const T=U.reduce((a,r)=>{['members','exempt','due','paidCount','pending','noRecord','approved','paid','declared'].forEach(x=>a[x]=(a[x]||0)+v(r,x));return a},{});
