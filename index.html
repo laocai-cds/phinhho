@@ -1252,7 +1252,7 @@ const curKey=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMont
 const viewingPast=()=>!!(viewKey&&viewKey!==curKey()&&msnap[viewKey]);
 /* bỏ đơn vị toàn số 0 (không có đảng viên, hồ sơ, tiền) khỏi mọi bảng, biểu đồ, báo cáo */
 const hasData=r=>['members','exempt','moved','pending','approved','paidCount','unfiled','declared','paid'].some(k=>v(r,k)>0);
-function applyView(){const src=(viewingPast()?msnap[viewKey].rows:liveUnits).filter(r=>hasData(r)&&v(r,'due')>0&&nkey(nm(r))!=='dangbocaccoquandang');
+function applyView(){const src=(viewingPast()?msnap[viewKey].rows:liveUnits).filter(r=>hasData(r)&&v(r,'members')>0&&nkey(nm(r))!=='dangbocaccoquandang');
   units=[...src].sort((a,b)=>v(b,'progress')-v(a,'progress')||v(b,'paid')-v(a,'paid'));rankOf=new Map();units.forEach((r,i)=>rankOf.set(r,i+1))}
 function renderBanner(){let b=$('#viewBanner');if(!b){b=document.createElement('div');b.id='viewBanner';const o=$('#overview');o.insertBefore(b,o.firstChild)}
   if(!viewingPast()){b.style.display='none';return}
