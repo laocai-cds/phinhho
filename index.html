@@ -1083,7 +1083,7 @@ go();document.addEventListener('DOMContentLoaded',go);
     <div class="brand">
       <div class="seal"><img src="logo.png" alt="Cờ Đảng" width="40" height="40" decoding="async"></div>
       <div><i class="bd-eb">Đảng Cộng sản Việt Nam</i><b>Đảng bộ xã Phình Hồ</b><small>Hệ thống theo dõi thu nộp đảng phí<span class="bd-prov"> · Tỉnh Lào Cai</span></small></div>
-      <div class="brand-date" id="brandDate" aria-label="Hôm nay"><small></small><b></b></div>
+      <div class="brand-info" id="brandInfo"><span class="bi"><span class="bi-l">Hôm nay</span><span class="bi-v" data-k="d"></span></span><span class="bi"><span class="bi-l">Kỳ thu</span><span class="bi-v" data-k="m"></span></span></div>
     </div>
     <nav class="tabs" aria-label="Chuyên mục">
       <button class="tab" data-page="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span>Tổng quan</span></button>
@@ -3513,6 +3513,15 @@ el.querySelector('small').textContent=W[d.getDay()];el.querySelector('b').textCo
 #stats .stat.kp-hero>.kp-ring,#stats .stat.kp-hero>.kp-hb{position:relative;z-index:1}
 @media(max-width:560px){#stats .stat.kp-hero>.kp-drum{background-position:center 30%;background-size:300px}}
 </style>
+<style id="brandInfoCss">/* Phình Hồ: hai ô "Hôm nay" và "Kỳ thu" giống Trạm Tấu */
+.brand-info{position:relative;z-index:1;margin-left:auto;display:flex;gap:10px;flex:none}
+.brand-info .bi{display:flex;flex-direction:column;align-items:flex-start;padding:8px 16px;border-radius:12px;background:#ffffff17;border:1px solid #ffffff38;box-shadow:inset 0 1px 0 #ffffff2e,0 8px 18px -12px #021f36aa;backdrop-filter:blur(4px)}
+.brand-info .bi-l{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ffe08a}
+.brand-info .bi-v{font-size:16px;font-weight:800;color:#fff;white-space:nowrap}
+@media(max-width:1023px){.brand-info{display:none}}
+</style>
+<script>(()=>{const el=document.getElementById('brandInfo');if(!el)return;const d=new Date(),p=n=>String(n).padStart(2,'0');
+el.querySelector('[data-k=d]').textContent=p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear();el.querySelector('[data-k=m]').textContent='Tháng '+p(d.getMonth()+1)+'/'+d.getFullYear()})();</script>
 <script src="xa-bar.js"></script>
 </body>
 </html>
