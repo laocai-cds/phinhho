@@ -3403,6 +3403,32 @@ document.addEventListener('keydown',function(e){var o=ov();if(e.key==='Escape'&&
 .bar .barright .btn,.bar .barright .btn:hover{padding:0 10px!important;font-size:12px!important;gap:5px!important}
 }
 </style>
+<style id="kpiFx">/* Phình Hồ: hiệu ứng cho 4 thẻ số liệu tổng quan */
+@keyframes kpIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes kpBar{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes kpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes kpGlow{0%,100%{box-shadow:0 6px 14px -6px var(--k),0 0 0 0 color-mix(in srgb,var(--k) 35%,transparent)}50%{box-shadow:0 6px 14px -6px var(--k),0 0 0 7px color-mix(in srgb,var(--k) 0%,transparent)}}
+@keyframes kpPop{0%{transform:scale(1) rotate(0)}40%{transform:scale(1.16) rotate(-8deg)}70%{transform:scale(.96) rotate(4deg)}100%{transform:scale(1.08) rotate(0)}}
+#stats:not(.kp-done) .stat{animation:kpIn .6s cubic-bezier(.2,.75,.25,1) both}
+#stats:not(.kp-done) .stat:nth-child(2){animation-delay:.09s}
+#stats:not(.kp-done) .stat:nth-child(3){animation-delay:.18s}
+#stats:not(.kp-done) .stat:nth-child(4){animation-delay:.27s}
+#stats .stat{transition:transform .28s cubic-bezier(.2,.75,.25,1),box-shadow .28s,border-color .28s;will-change:transform}
+#stats .stat::before{content:'';position:absolute;top:0;bottom:0;left:-60%;width:45%;background:linear-gradient(100deg,transparent,#ffffffb8 50%,transparent);transform:skewX(-18deg);pointer-events:none;z-index:1;opacity:0}
+#stats .stat:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--k) 45%,#fff);box-shadow:0 16px 30px -16px color-mix(in srgb,var(--k) 70%,transparent),0 2px 6px #0f172a0f}
+#stats .stat:hover::before{opacity:1;left:120%;transition:left .75s ease,opacity .1s}
+#stats .stat::after{background:linear-gradient(90deg,var(--k),color-mix(in srgb,var(--k) 35%,#fff),var(--k),color-mix(in srgb,var(--k) 35%,#fff),var(--k));background-size:200% 100%;animation:kpBar 4s linear infinite;transition:height .25s}
+#stats .stat:hover::after{height:6px}
+#stats .stat .ico{z-index:2;animation:kpFloat 3.2s ease-in-out infinite,kpGlow 2.6s ease-out infinite}
+#stats .stat:nth-child(2) .ico{animation-delay:.4s,.6s}
+#stats .stat:nth-child(3) .ico{animation-delay:.8s,1.2s}
+#stats .stat:nth-child(4) .ico{animation-delay:1.2s,1.8s}
+#stats .stat:hover .ico{animation:kpPop .55s ease forwards}
+#stats .stat strong{transition:letter-spacing .3s}
+#stats .stat:hover strong{letter-spacing:0}
+@media(prefers-reduced-motion:reduce){#stats .stat,#stats .stat .ico,#stats .stat::after{animation:none!important}#stats .stat:hover{transform:none}}
+</style>
+<script>(()=>{const s=document.getElementById('stats');if(s)setTimeout(()=>s.classList.add('kp-done'),2500)})();</script>
 <script src="xa-bar.js"></script>
 </body>
 </html>
