@@ -1082,7 +1082,8 @@ go();document.addEventListener('DOMContentLoaded',go);
   <div class="wrap">
     <div class="brand">
       <div class="seal"><img src="logo.png" alt="Cờ Đảng" width="40" height="40" decoding="async"></div>
-      <div><b>ĐẢNG BỘ XÃ PHÌNH HỒ</b><small>Theo dõi thu nộp đảng phí</small></div>
+      <div><i class="bd-eb">Đảng Cộng sản Việt Nam</i><b>Đảng bộ xã Phình Hồ</b><small>Hệ thống theo dõi thu nộp đảng phí<span class="bd-prov"> · Tỉnh Lào Cai</span></small></div>
+      <div class="brand-date" id="brandDate" aria-label="Hôm nay"><small></small><b></b></div>
     </div>
     <nav class="tabs" aria-label="Chuyên mục">
       <button class="tab" data-page="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span>Tổng quan</span></button>
@@ -3477,6 +3478,35 @@ document.addEventListener('keydown',function(e){var o=ov();if(e.key==='Escape'&&
 @media(max-width:560px){#stats .kp-hero{flex-direction:column;align-items:stretch;gap:16px;padding:18px!important}.kp-ring{width:130px;margin:0 auto}#stats .kp-mini{padding:14px!important}}
 @media(prefers-reduced-motion:reduce){.kp-dot{animation:none}}
 </style>
+<style id="bannerPHCss">/* Phình Hồ: banner trang trọng — nền xanh đậm, hoa văn trống đồng mờ, chữ có chân vàng kim */
+.bar .brand{position:relative;align-items:center!important;gap:18px!important;overflow:hidden}
+.bar .seal{position:relative;z-index:1;flex:none;width:60px!important;height:60px!important;border-radius:14px!important;background:#fff!important;box-shadow:0 0 0 1px #f5d77a,0 0 0 4px #ffffff22,0 10px 22px -10px #021f36cc!important}
+.bar .brand>div:nth-child(2){position:relative;z-index:1;min-width:0;padding-left:18px;border-left:1px solid #f5d77a88}
+.bd-eb{display:block;font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#bfe6ff;margin-bottom:3px}
+.bar .brand b{display:block!important;font-family:'Noto Serif',Georgia,serif!important;font-weight:700!important;font-size:clamp(23px,2.5vw,32px)!important;line-height:1.25!important;letter-spacing:.045em!important;text-transform:uppercase;padding:0 0 1px!important;margin:0!important;white-space:nowrap;background:linear-gradient(180deg,#fffbe6 0%,#ffe08a 45%,#f2b630 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;filter:drop-shadow(0 2px 2px #02284466)!important}
+.bar .brand small{display:block!important;margin-top:4px!important;font-size:14px!important;font-weight:500!important;color:#d9efff!important;letter-spacing:.01em!important;text-transform:none!important;opacity:1!important}
+.bar .brand small::before{display:none!important}
+.brand-date{position:relative;z-index:1;margin-left:auto;flex:none;display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:8px 16px 8px 12px;border-radius:14px;background:#ffffff1f;border:1px solid #ffffff3d;box-shadow:inset 0 1px 0 #ffffff33,0 8px 18px -12px #021f36aa;backdrop-filter:blur(4px);text-align:left}
+.brand-date::before{content:'';grid-row:1/3;width:36px;height:36px;border-radius:11px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306456d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='5' width='17' height='15.5' rx='2.5'/%3E%3Cpath d='M3.5 10h17M8 3v4M16 3v4'/%3E%3C/svg%3E") center/18px no-repeat,linear-gradient(135deg,#ffe08a,#f2b630);box-shadow:0 4px 10px -4px #00000066}
+.bar .brand .brand-date small{display:block!important;margin:0!important;font-size:11.5px!important;font-weight:600!important;letter-spacing:.06em!important;text-transform:uppercase!important;color:#bfe6ff!important}
+.bar .brand .brand-date b{font-family:var(--sans)!important;font-weight:800!important;font-size:18px!important;letter-spacing:0!important;text-transform:none;white-space:nowrap;background:none!important;-webkit-text-fill-color:#fff!important;color:#fff!important;filter:none!important}
+@media(min-width:1024px){
+.bar .wrap{padding-top:0!important}
+.bar .brand{margin:0 -26px!important;padding:18px 28px 20px!important;width:calc(100% + 52px)!important;flex-basis:calc(100% + 52px)!important;
+ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' opacity='.13'%3E%3Cg fill='none' stroke='%23ffffff'%3E%3Ccircle cx='100' cy='100' r='97'/%3E%3Ccircle cx='100' cy='100' r='86' stroke-dasharray='1.5 3.5'/%3E%3Ccircle cx='100' cy='100' r='74'/%3E%3Ccircle cx='100' cy='100' r='62' stroke-dasharray='7 4'/%3E%3Ccircle cx='100' cy='100' r='48'/%3E%3Ccircle cx='100' cy='100' r='34' stroke-dasharray='2 3'/%3E%3C/g%3E%3Cpath fill='%23ffffff' d='M100 72l6.6 20.3h21.4l-17.3 12.6 6.6 20.3L100 112.6l-17.3 12.6 6.6-20.3-17.3-12.6h21.4z'/%3E%3C/svg%3E") right -60px center/300px no-repeat,radial-gradient(120% 220% at 0% 0%,#2aa3e6 0,#1689d0 35%,#0a64a3 70%,#074b7c 100%)!important}
+.bar .brand::after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,transparent,#8ad8ff 20%,#8ad8ff 80%,transparent) top/100% 1px no-repeat,linear-gradient(90deg,#d9a520,#ffe08a 50%,#d9a520) bottom/100% 2px no-repeat}
+}
+@media(max-width:1023px){
+.bar .brand{background:none!important;padding:0!important;gap:10px!important}
+.bar .seal{width:42px!important;height:42px!important;border-radius:11px!important}
+.bar .brand>div:nth-child(2){padding-left:0;border-left:0}
+.bd-eb,.brand-date,.bd-prov{display:none}
+.bar .brand b{font-size:clamp(14px,4vw,18px)!important;letter-spacing:.02em!important;white-space:normal}
+.bar .brand small{font-size:11px!important}
+}
+</style>
+<script>(()=>{const el=document.getElementById('brandDate');if(!el)return;const d=new Date(),W=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'],p=n=>String(n).padStart(2,'0');
+el.querySelector('small').textContent=W[d.getDay()];el.querySelector('b').textContent=p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()})();</script>
 <script src="xa-bar.js"></script>
 </body>
 </html>
@@ -3553,9 +3583,6 @@ small,.muted,.hint,.pagehead p,.ph small{color:#202a36!important;font-weight:600
 .tabs .tab svg,.tabs .tab[aria-current=page] svg{color:#71879a!important}
 </style>
 
-<style>.bar .brand b{font-siz</style>
-<style>.bar .brand b{font-size:17px!important;line-height:1.55!i</style>
-<style>.bar .brand b{font-size:17px!important}</style></style>
 
 <style>/* Phình Hồ: cân đối 2 khối "Tổng hợp tình hình" và "Tình hình thu toàn Đảng bộ" */
 .g-21{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:stretch}
