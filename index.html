@@ -1366,7 +1366,12 @@ go();document.addEventListener('DOMContentLoaded',go);
 </section>
 </main>
 
-<footer class="foot"><div class="wrap"><div class="credit"><span class="cr-ic" aria-hidden="true">★</span><div class="cr-t"><span class="cr-k">Thiết kế và phát triển</span><b>Đặng Thị Hồng Nhung</b><span class="cr-o">Văn phòng Đảng ủy xã Phình Hồ</span></div></div><p class="copyr"><span aria-hidden="true">©</span> Bản quyền 2026: <b>Đảng bộ xã Phình Hồ</b></p></div></footer>
+<footer class="foot"><div class="wrap ft">
+  <div class="ft-main">
+    <div class="ft-credit"><span class="ft-k">Thiết kế và phát triển</span><b>Đặng Thị Hồng Nhung</b><span class="ft-o">Văn phòng Đảng ủy xã Phình Hồ</span></div>
+  </div>
+  <p class="ft-copy"><span aria-hidden="true">©</span> Bản quyền 2026 · <b>Đảng bộ xã Phình Hồ</b></p>
+</div></footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="back" id="ntModal" role="dialog" aria-modal="true" aria-labelledby="ntTitle">
@@ -3778,4 +3783,19 @@ html body :is(#stats,#heroCard) .cardx .cx-holder small,html body :is(#stats,#he
 html body :is(#stats,#heroCard) .cardx .cx-valid small{font-size:8.5px!important;opacity:1!important;color:#dff0ff!important}
 html body #stats .kp-mini>span,html body #stats .kp-mini small{color:#4b5a6e}
 </style>
+<style id="footCss">/* Chân trang thiết kế lại */
+html body .foot{padding:0!important;margin-top:34px;border-top:0!important;background:linear-gradient(135deg,#1a96e0 0%,#0873b6 55%,#07598f 100%)!important;color:#fff;position:relative}
+html body .foot::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#c9a227,#f7e08a,#c9a227)}
+html body .foot>.wrap.ft{display:block;padding:30px 32px 18px}
+.ft-main{display:flex;align-items:center;justify-content:center;padding-bottom:20px;border-bottom:1px solid #ffffff38}
+.ft-credit{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;line-height:1.5}
+.ft-k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ffe9a6}
+.ft-credit b{font-size:17px;font-weight:800;color:#fff}
+.ft-o{font-size:13px;color:#e0f2ff}
+.ft-copy{margin:14px 0 0;text-align:center;font-size:12.5px;color:#d3ecff}
+.ft-copy b{color:#ffe9a6;font-weight:700}
+@media(max-width:700px){html body .foot>.wrap.ft{padding:24px 18px 16px}}
+@media print{.foot{background:#fff!important;color:#000}.foot *{color:#000!important}}
+</style>
+
 
